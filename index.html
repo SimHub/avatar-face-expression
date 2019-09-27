@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>document</title>
+    <!-- <script defer src="face-api.min.js"></script> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/spectre.css/dist/spectre.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"
+    />
+    <script defer src="face-api.js"></script>
+    <script defer src="script.js"></script>
+    <style>
+                    @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sacramento');
+                    body {
+                      margin: 0;
+                      padding: 0;
+                      width: 100vw;
+                      height: 100vh;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      font-family: 'Sacramento', cursive;
+                    }
+                    video {
+                      width: 0;
+                      height: 0;
+                    }
+                    canvas {
+                      position: absolute;
+                    }
+
+                    .avatar-blur {
+                      animation: image_blur 3s ease 0s infinite;
+                      -webkit-animation: image_blur 3s ease 0s infinite;
+                      -moz-animation: image_blur 3s ease 0s infinite;
+                    }
+                    #wrapper {
+                      display: flex;
+                    }
+
+                    #expression-pending {
+              font-size:2em;
+                      text-align: center;
+                    }
+                    #expression-txt{
+                      font-size:4em;
+                    }
+                    #chipContainer {
+                      display: flex;
+                    }
+                    .chip {
+                        font-size:1.5em;
+                      border-radius: 0;
+                        height:30px;
+                    }
+                    .chip.gender-chip,.chip.age-chip {
+                      flex: 1;
+      font-size: 4.2em;
+                        height:30px;
+                    }
+                    .chip.age-chip {
+                      background: #e95f17;
+                    }
+                    .chip.gender-chip {
+                        background:background: aliceblue;
+                    }
+                    .loading {
+                      position: absolute;
+                      margin-left: 10px;
+                      margin-top: 1px;
+                    }
+                    .loading:after {
+                      animation: loading 0.5s infinite linear;
+                      border: 0.1rem solid rgba(0, 0, 0, 0.95);
+                      border-radius: 50%;
+                      border-right-color: transparent;
+                      border-top-color: transparent;
+                      content: '';
+                      display: block;
+                      height: 0.8rem;
+                      left: 50%;
+                      margin-left: -0.4rem;
+                      margin-top: -0.4rem;
+                      position: absolute;
+                      top: 50%;
+                      width: 0.8rem;
+                      z-index: 1;
+                    }
+                    .avatar-lamp {
+                      position: absolute;
+                      width: 20px;
+                      height: 20px;
+                      background: #e8e8e8;
+                      border-radius: 90px;
+                    }
+                    @keyframes image_blur {
+                      0%,
+                      90% {
+                        -webkit-filter: blur(2px);
+                        -moz-filter: blur(2px);
+                        -o-filter: blur(2px);
+                        -ms-filter: blur(2px);
+                      }
+                      50% {
+                        -webkit-filter: blur(15px);
+                        -moz-filter: blur(15px);
+                        -o-filter: blur(15px);
+                        -ms-filter: blur(15px);
+                      }
+                    }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <video id="video" width="720" height="560" autoplay muted></video>
+      <div class="panel">
+        <div id="expression-pending" class="toast toast-error"></div>
+        <div id="chipContainer">
+          <span class="chip"> Gender:</span>
+          <span class="gender-chip"></span>
+          <span class="chip"> Age:</span>
+          <span class="age-chip"></span>
+        </div>
+        <div class="panel-header text-center">
+          <span class="avatar-lamp"></span>
+          <span class="loading"></span>
+          <img id="avatar" src="./img/avatar/neutral_start.png" alt="avatar" />
+          <div class="panel-title h5 mt-10" id="expression-title"></div>
+          <div class="panel-subtitle" id="expression-txt"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
