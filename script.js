@@ -9,43 +9,30 @@ const genderChip = document.querySelector('.gender-chip');
 const ageChip = document.querySelector('.age-chip');
 
 let maleAvatarImg = {
-  angry: './img/avatar/angry_male.png',
-  neutral: './img/avatar/neutral_male.png',
-  happy: './img/avatar/happy_male.png',
-  sad: './img/avatar/sad_male.png',
-  surprised: './img/avatar/surprised_male.png',
-  disgusted: './img/avatar/disgusted_male.png',
+  angry: './img/avatar/svg/angry_male.svg',
+  neutral: './img/avatar/svg/neutral_male.svg',
+  happy: './img/avatar/svg/happy_male.svg',
+  sad: './img/avatar/svg/sad_male.svg',
+  surprised: './img/avatar/svg/surprised_male.svg',
+  disgusted: './img/avatar/svg/disgusted_male.svg',
+};
+let femaleAvatarImg = {
+  angry: './img/avatar/svg/angry_female.svg',
+  neutral: './img/avatar/svg/neutral_female.svg',
+  happy: './img/avatar/svg/happy_female.svg',
+  sad: './img/avatar/svg/sad_female.svg',
+  surprised: './img/avatar/svg/surprised_female.svg',
+  disgusted: './img/avatar/svg/disgusted_female.svg',
 };
 
 expressionPending.innerHTML = 'Please Wait! - <br/> i need to FOCUS!';
 avatar.classList.add('avatar-blur');
 
 let getMaleAvatar = mood => {
-  // console.log(mood);
-  if (mood[0] > 0.9 || mood[0] >= 1) {
+  if (mood[0] > 0.6 || mood[0] >= 1) {
     avatar.src = maleAvatarImg[mood[1]];
     expressionTxt.innerText = mood[1];
   }
-  // if (neutral > 0.9 || neutral >= 1) {
-  // avatar.src = './img/superneutral.png';
-  // expressionTxt.innerText = 'neutral';
-  // }
-  // if (happy > 0.9 || happy >= 1) {
-  // avatar.src = './img/superhappy.png';
-  // expressionTxt.innerText = 'happy';
-  // }
-  // if (surprised > 0.9 || surprised >= 1) {
-  // avatar.src = './img/surprised.png';
-  // expressionTxt.innerText = 'surprised';
-  // }
-  // if (disgusted > 0.9 || disgusted >= 1) {
-  // avatar.src = './img/disgusted.png';
-  // expressionTxt.innerText = 'disgusted';
-  // }
-  // if (sad > 0.9 || sad >= 1) {
-  // avatar.src = './img/sad.png';
-  // expressionTxt.innerText = 'sad';
-  // }
 };
 
 Promise.all([
