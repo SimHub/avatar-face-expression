@@ -22,6 +22,13 @@ canvas {
   -webkit-animation: image_blur 3s ease 0s infinite;
   -moz-animation: image_blur 3s ease 0s infinite;
 }
+
+.tooltip:focus,
+.tooltip:focus::after,
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -0.2rem);
+}
 #wrapper {
   display: flex;
 }
@@ -41,17 +48,15 @@ canvas {
   border-radius: 0;
   height: 30px;
 }
-.chip.gender-chip,
-.chip.age-chip {
+.gender-chip,
+.age-chip {
   flex: 1;
-  font-size: 4.2em;
+  font-size: 3.2em;
   height: 30px;
 }
-.chip.age-chip {
-  background: #e95f17;
+.age-chip {
 }
-.chip.gender-chip {
-  background: aliceblue;
+.gender-chip {
 }
 .loading {
   position: absolute;

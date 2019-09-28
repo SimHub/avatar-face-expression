@@ -22,25 +22,47 @@
       rel="stylesheet"
       href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"
     />
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css" />
     <script defer src="face-api.js"></script>
     <script defer src="script.js"></script>
   </head>
   <body>
     <div id="wrapper">
       <video id="video" width="720" height="560" autoplay muted></video>
+
       <div class="panel">
-        <div id="expression-pending" class="toast toast-error"></div>
+
         <div id="chipContainer">
           <span class="chip"> Gender:</span>
           <span class="gender-chip"></span>
           <span class="chip"> Age:</span>
           <span class="age-chip"></span>
         </div>
+
+        <div id="expression-pending" class="">
+          <ul class="step">
+            <li class="step-item">
+              <a href="#" class="tooltip" data-tooltip="Step 1"></a>
+            </li>
+            <li class="step-item active">
+              <a href="#" class="tooltip" data-tooltip="Step 2"></a>
+            </li>
+            <li class="step-item">
+              <a href="#" class="tooltip" data-tooltip="Step 3"></a>
+            </li>
+            <li class="step-item">
+              <a href="#" class="tooltip" data-tooltip="Step 4"></a>
+            </li>
+          </ul>
+        </div>
         <div class="panel-header text-center">
           <span class="avatar-lamp"></span>
           <span class="loading"></span>
-          <img id="avatar" src="./img/avatar/svg/neutral_start.svg" alt="avatar" />
+          <img
+            id="avatar"
+            src="./img/avatar/svg/neutral_start.svg"
+            alt="avatar"
+          />
           <div class="panel-title h5 mt-10" id="expression-title"></div>
           <div class="panel-subtitle" id="expression-txt"></div>
         </div>
