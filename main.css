@@ -43,6 +43,10 @@ canvas {
 #chipContainer {
   display: flex;
 }
+#status{
+font-size: 0.6em;
+    /* font-family: sans-serif; */
+}
 .chip {
   font-size: 1.5em;
   border-radius: 0;

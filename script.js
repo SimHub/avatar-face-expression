@@ -6,7 +6,11 @@ const expressionPending = document.querySelector('#expression-pending');
 const expressionTitle = document.querySelector('#expression-title');
 const loader = document.querySelector('.loading');
 const genderChip = document.querySelector('.gender-chip');
+const chipContainer = document.querySelector('#chipContainer');
 const ageChip = document.querySelector('.age-chip');
+const tooltip = document.querySelectorAll('.tooltip');
+const stepItem = document.querySelectorAll('.step-item');
+const status = document.querySelector('#status');
 
 let gender;
 let age;
@@ -41,8 +45,9 @@ let femaleAvatarImg = {
 
 // expressionPending.innerHTML = 'Please Wait! - <br/> i need to FOCUS!';
 avatar.classList.add('avatar-blur');
-document.querySelectorAll('.tooltip')[2].focus()
-console.log(document.querySelectorAll('.tooltip')[1])
+tooltip[0].focus();
+stepItem[0].classList.add('active');
+status.innerHTML = '<code class="label label-default">loading module...</code>';
 
 let getAvatar = (mood, gender) => {
   if (mood[0] > 0.6 || mood[0] >= 1) {
@@ -52,16 +57,13 @@ let getAvatar = (mood, gender) => {
   }
 };
 
-console.log('Loading module...')
-avatarLamp.innerText="Loading module...";
-
-// Promise.all([
-  // faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-  // faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-  // faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-  // faceapi.nets.faceExpressionNet.loadFromUri('/models'),
-  // faceapi.nets.ageGenderNet.loadFromUri('/models'),
-// ]).then(startVideo);
+Promise.all([
+  faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+  faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+  faceapi.nets.ageGenderNet.loadFromUri('/models'),
+]).then(startVideo);
 
 function startVideo() {
   navigator.getUserMedia(
@@ -69,14 +71,22 @@ function startVideo() {
     stream => (video.srcObject = stream),
     err => console.error(err),
   );
-console.log('start video session...')
-avatarLamp.innerText="start video session...";
+  console.log('start video session...');
+  tooltip[1].focus();
+  stepItem[0].classList.remove('active');
+  stepItem[1].classList.add('active');
+  status.innerHTML =
+    '<code class="label label-secondary">start video session...</code>';
 }
 
 video.addEventListener('play', () => {
+  tooltip[2].focus();
+  stepItem[1].classList.remove('active');
+  stepItem[2].classList.add('active');
+  status.innerHTML =
+    '<code class="label label-warning">prepare face detection..</code>';
 
-avatarLamp.innerText="prepare face detection..";
-console.log('prepare face detection..')
+  console.log('prepare face detection..');
   const canvas = faceapi.createCanvasFromMedia(video);
   document.body.append(canvas);
   // const displaySize = {width: video.width, height: video.height};
@@ -94,13 +104,19 @@ console.log('prepare face detection..')
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
-    console.log(detections[0]);
-console.log('initialize  detection..')
+
+    tooltip[3].focus();
+    stepItem[2].classList.remove('active');
+    stepItem[3].classList.add('active');
+    status.innerHTML =
+      '<code class="label label-success">initialize  detection..</code>';
+
     // console.log(gender)
     if (detections[0]) {
-avatarLamp.innerText="";
       if (scan < 1) {
         // console.log(detections);
+        status.innerText = '';
+
         gender = detections[0].gender;
         age = detections[0].age.toFixed(0);
 
@@ -121,7 +137,7 @@ avatarLamp.innerText="";
       happy = [exp.happy.toFixed(2), 'happy'];
       surprised = [exp.surprised.toFixed(2), 'surprised'];
       disgusted = [exp.disgusted.toFixed(2), 'disgusted'];
-      fearful =[exp.fearful.toFixed(2),'fearful'];
+      fearful = [exp.fearful.toFixed(2), 'fearful'];
       sad = [exp.sad.toFixed(2), 'sad'];
 
       getAvatar(angry, gender);
