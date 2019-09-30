@@ -5,6 +5,7 @@ const expressionTxt = document.querySelector('#expression-txt');
 const expressionTitle = document.querySelector('#expression-title');
 const loader = document.querySelector('.loading');
 const status = document.querySelector('#status');
+const panel = document.querySelector('.panel');
 
 let gender;
 let age;
@@ -37,9 +38,11 @@ let femaleAvatarImg = {
   fearful: './img/avatar/svg/fearful_female.svg',
 };
 
+// console.log([panel])
+expressionTitle.innerHTML="<h1>your are..</h1>";
 avatar.classList.add('avatar-blur');
 status.innerHTML = '<code class="label label-default">loading module...</code>';
-  avatarLamp.style.backgroundColor = '#8A2BE2';
+avatarLamp.style.backgroundColor = '#8A2BE2';
 
 let getAvatar = (mood, gender) => {
   if (mood[0] > 0.6 || mood[0] >= 1) {
@@ -77,6 +80,7 @@ video.addEventListener('play', () => {
   // document.body.append(canvas);
   // const displaySize = {width: video.width, height: video.height};
   // const displaySize = {width: '400', height: '500'};
+  // const displaySize = {width: panel.offsetWidth, height: panel.offsetHeight};
   // faceapi.matchDimensions(canvas, displaySize);
   setInterval(async () => {
     const detections = await faceapi
@@ -90,7 +94,7 @@ video.addEventListener('play', () => {
     // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
     // faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
-    // console.log(gender)
+    // console.log(detections[0].landmarks.shift._x.toFixed(2))
     if (detections[0]) {
       if (scan < 1) {
         // console.log(detections);

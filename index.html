@@ -29,11 +29,16 @@
   <body>
     <div id="wrapper">
       <video id="video" width="720" height="560" autoplay muted></video>
+
       <div class="panel">
-        <div id="status"></div>
+        <div id="statusBox">
+          <div>
+            <span class="avatar-lamp"></span>
+            <span class="loading"></span>
+          </div>
+          <div id="status"></div>
+        </div>
         <div class="panel-header text-center">
-          <span class="avatar-lamp"></span>
-          <span class="loading"></span>
           <img
             id="avatar"
             src="./img/avatar/svg/neutral_start.svg"
@@ -42,6 +47,7 @@
           <div class="panel-title h5 mt-10" id="expression-title"></div>
           <div class="panel-subtitle" id="expression-txt"></div>
         </div>
+
       </div>
     </div>
   </body>

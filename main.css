@@ -47,6 +47,10 @@ canvas {
   margin-top: 55px;
   display: flex;
 }
+#statusBox{
+display:flex;
+justify-content: space-between;
+}
 #status {
 font-size:1.3em;
 }
