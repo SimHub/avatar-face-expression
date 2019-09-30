@@ -20,26 +20,25 @@ let sad;
 
 let scan = 0;
 let maleAvatarImg = {
-  angry: './img/avatar/svg/angry_male.svg',
-  neutral: './img/avatar/svg/neutral_male.svg',
-  happy: './img/avatar/svg/happy_male.svg',
-  sad: './img/avatar/svg/sad_male.svg',
-  surprised: './img/avatar/svg/surprised_male.svg',
-  disgusted: './img/avatar/svg/disgusted_male.svg',
-  fearful: './img/avatar/svg/fearful_male.svg',
+  angry: './img/avatar/png/angry_male.png',
+  neutral: './img/avatar/png/neutral_male.png',
+  happy: './img/avatar/png/happy_male.png',
+  sad: './img/avatar/png/sad_male.png',
+  surprised: './img/avatar/png/surprised_male.png',
+  disgusted: './img/avatar/png/disgusted_male.png',
+  // fearful: './img/avatar/png/fearful_male.png',
 };
 let femaleAvatarImg = {
-  angry: './img/avatar/svg/angry_female.svg',
-  neutral: './img/avatar/svg/neutral_female.svg',
-  happy: './img/avatar/svg/happy_female.svg',
-  sad: './img/avatar/svg/sad_female.svg',
-  surprised: './img/avatar/svg/surprised_female.svg',
-  disgusted: './img/avatar/svg/disgusted_female.svg',
-  fearful: './img/avatar/svg/fearful_female.svg',
+  angry: './img/avatar/png/angry_female.png',
+  neutral: './img/avatar/png/neutral_female.png',
+  happy: './img/avatar/png/happy_female.png',
+  sad: './img/avatar/png/sad_female.png',
+  surprised: './img/avatar/png/surprised_female.png',
+  disgusted: './img/avatar/png/disgusted_female.png',
+  // fearful: './img/avatar/png/fearful_female.png',
 };
 
-// console.log([panel])
-expressionTitle.innerHTML="<h1>your are..</h1>";
+expressionTitle.innerHTML = '<h1>your are..</h1>';
 avatar.classList.add('avatar-blur');
 status.innerHTML = '<code class="label label-default">loading module...</code>';
 avatarLamp.style.backgroundColor = '#8A2BE2';
@@ -66,41 +65,25 @@ function startVideo() {
     stream => (video.srcObject = stream),
     err => console.error(err),
   );
-  console.log('start video session...');
   status.innerHTML =
     '<code class="label label-secondary">start video session...</code>';
 }
 
 video.addEventListener('play', () => {
   status.innerHTML =
-    '<code class="label label-warning">initialize  detection..</code>';
+    '<code class="label label-warning">initialize face  detection</code>';
   avatarLamp.style.backgroundColor = 'orange';
-  // console.log('prepare face detection..');
-  // const canvas = faceapi.createCanvasFromMedia(video);
-  // document.body.append(canvas);
-  // const displaySize = {width: video.width, height: video.height};
-  // const displaySize = {width: '400', height: '500'};
-  // const displaySize = {width: panel.offsetWidth, height: panel.offsetHeight};
-  // faceapi.matchDimensions(canvas, displaySize);
   setInterval(async () => {
     const detections = await faceapi
       .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks()
       .withFaceExpressions()
       .withAgeAndGender();
-    // const resizedDetections = faceapi.resizeResults(detections, displaySize);
-    // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
-    // faceapi.draw.drawDetections(canvas, resizedDetections);
-    // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-    // faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
-    // console.log(detections[0].landmarks.shift._x.toFixed(2))
     if (detections[0]) {
-      if (scan < 1) {
-        // console.log(detections);
+      // if (scan < 1) {
         gender = detections[0].gender;
         age = detections[0].age.toFixed(0);
-
         status.style.display = 'none';
         loader.style.display = 'none'; // hide preloader
         avatar.style.filter = 'blur(0px)';
@@ -108,15 +91,15 @@ video.addEventListener('play', () => {
         avatar.classList.remove('avatar-blur');
         avatarLamp.style.backgroundColor = 'lightgreen';
 
-        scan++;
-      }
+        // scan++;
+      // }
       exp = detections[0].expressions;
       angry = [exp.angry.toFixed(2), 'angry'];
       neutral = [exp.neutral.toFixed(2), 'neutral'];
       happy = [exp.happy.toFixed(2), 'happy'];
       surprised = [exp.surprised.toFixed(2), 'surprised'];
       disgusted = [exp.disgusted.toFixed(2), 'disgusted'];
-      fearful = [exp.fearful.toFixed(2), 'fearful'];
+      // fearful = [exp.fearful.toFixed(2), 'fearful'];
       sad = [exp.sad.toFixed(2), 'sad'];
 
       getAvatar(angry, gender);
