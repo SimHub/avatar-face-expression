@@ -2,14 +2,8 @@ const video = document.getElementById('video');
 const avatar = document.querySelector('#avatar');
 const avatarLamp = document.querySelector('.avatar-lamp');
 const expressionTxt = document.querySelector('#expression-txt');
-const expressionPending = document.querySelector('#expression-pending');
 const expressionTitle = document.querySelector('#expression-title');
 const loader = document.querySelector('.loading');
-const genderChip = document.querySelector('.gender-chip');
-const chipContainer = document.querySelector('#chipContainer');
-const ageChip = document.querySelector('.age-chip');
-const tooltip = document.querySelectorAll('.tooltip');
-const stepItem = document.querySelectorAll('.step-item');
 const status = document.querySelector('#status');
 
 let gender;
@@ -43,11 +37,9 @@ let femaleAvatarImg = {
   fearful: './img/avatar/svg/fearful_female.svg',
 };
 
-// expressionPending.innerHTML = 'Please Wait! - <br/> i need to FOCUS!';
 avatar.classList.add('avatar-blur');
-tooltip[0].focus();
-stepItem[0].classList.add('active');
 status.innerHTML = '<code class="label label-default">loading module...</code>';
+  avatarLamp.style.backgroundColor = '#8A2BE2';
 
 let getAvatar = (mood, gender) => {
   if (mood[0] > 0.6 || mood[0] >= 1) {
@@ -72,57 +64,40 @@ function startVideo() {
     err => console.error(err),
   );
   console.log('start video session...');
-  tooltip[1].focus();
-  stepItem[0].classList.remove('active');
-  stepItem[1].classList.add('active');
   status.innerHTML =
     '<code class="label label-secondary">start video session...</code>';
 }
 
 video.addEventListener('play', () => {
-  tooltip[2].focus();
-  stepItem[1].classList.remove('active');
-  stepItem[2].classList.add('active');
   status.innerHTML =
-    '<code class="label label-warning">prepare face detection..</code>';
-
-  console.log('prepare face detection..');
-  const canvas = faceapi.createCanvasFromMedia(video);
-  document.body.append(canvas);
+    '<code class="label label-warning">initialize  detection..</code>';
+  avatarLamp.style.backgroundColor = 'orange';
+  // console.log('prepare face detection..');
+  // const canvas = faceapi.createCanvasFromMedia(video);
+  // document.body.append(canvas);
   // const displaySize = {width: video.width, height: video.height};
-  const displaySize = {width: '400', height: '500'};
-  faceapi.matchDimensions(canvas, displaySize);
+  // const displaySize = {width: '400', height: '500'};
+  // faceapi.matchDimensions(canvas, displaySize);
   setInterval(async () => {
     const detections = await faceapi
       .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks()
       .withFaceExpressions()
       .withAgeAndGender();
-    const resizedDetections = faceapi.resizeResults(detections, displaySize);
-    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
-    faceapi.draw.drawDetections(canvas, resizedDetections);
-    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-    faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-
-
-    tooltip[3].focus();
-    stepItem[2].classList.remove('active');
-    stepItem[3].classList.add('active');
-    status.innerHTML =
-      '<code class="label label-success">initialize  detection..</code>';
+    // const resizedDetections = faceapi.resizeResults(detections, displaySize);
+    // canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+    // faceapi.draw.drawDetections(canvas, resizedDetections);
+    // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+    // faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 
     // console.log(gender)
     if (detections[0]) {
       if (scan < 1) {
         // console.log(detections);
-        status.innerText = '';
-
         gender = detections[0].gender;
         age = detections[0].age.toFixed(0);
 
-        ageChip.innerText = age;
-        genderChip.innerText = gender;
-        // expressionPending.innerText = 'GREAT!';
+        status.style.display = 'none';
         loader.style.display = 'none'; // hide preloader
         avatar.style.filter = 'blur(0px)';
         expressionTxt.innerText = 'You are...';
@@ -147,7 +122,5 @@ video.addEventListener('play', () => {
       getAvatar(disgusted, gender);
       getAvatar(sad, gender);
     }
-
-    console.log(scan);
   }, 100);
 });

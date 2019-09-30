@@ -41,11 +41,14 @@ canvas {
   font-size: 4em;
 }
 #chipContainer {
+  transform: rotateZ(90deg);
+  position: absolute;
+  margin-left: -100px;
+  margin-top: 55px;
   display: flex;
 }
-#status{
-font-size: 0.6em;
-    /* font-family: sans-serif; */
+#status {
+font-size:1.3em;
 }
 .chip {
   font-size: 1.5em;
