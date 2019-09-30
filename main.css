@@ -17,10 +17,13 @@ canvas {
   position: absolute;
 }
 
+.panel {
+  border: none;
+}
 .avatar-blur {
-  animation: image_blur 3s ease 0s infinite;
-  -webkit-animation: image_blur 3s ease 0s infinite;
-  -moz-animation: image_blur 3s ease 0s infinite;
+  animation: image_blur 2s ease-in-out  infinite;
+  -webkit-animation: image_blur 2s ease-in-out  infinite;
+  -moz-animation: image_blur 2s ease-in-out  infinite;
 }
 
 .tooltip:focus,
@@ -31,6 +34,9 @@ canvas {
 }
 #wrapper {
   display: flex;
+  background: aliceblue;
+  border: 1px solid;
+  border-radius: 10px;
 }
 
 #expression-pending {
@@ -47,12 +53,13 @@ canvas {
   margin-top: 55px;
   display: flex;
 }
-#statusBox{
-display:flex;
-justify-content: space-between;
+#statusBox {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 #status {
-font-size:1.3em;
+  font-size: 1.3em;
 }
 .chip {
   font-size: 1.5em;
@@ -71,8 +78,8 @@ font-size:1.3em;
 }
 .loading {
   position: absolute;
-  margin-left: 10px;
-  margin-top: 1px;
+  left: 15px;
+  top: 7px;
 }
 .loading:after {
   animation: loading 0.5s infinite linear;
@@ -93,6 +100,8 @@ font-size:1.3em;
 }
 .avatar-lamp {
   position: absolute;
+  left: 5px;
+  top: 5px;
   width: 20px;
   height: 20px;
   background: #e8e8e8;

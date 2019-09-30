@@ -71,7 +71,7 @@ function startVideo() {
 
 video.addEventListener('play', () => {
   status.innerHTML =
-    '<code class="label label-warning">initialize face  detection</code>';
+    '<code class="label label-warning">initialize face</code>';
   avatarLamp.style.backgroundColor = 'orange';
   setInterval(async () => {
     const detections = await faceapi
