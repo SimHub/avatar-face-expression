@@ -1,5 +1,7 @@
 const video = document.getElementById('video');
-const avatar = document.querySelector('#avatar');
+const avatarFaces = document.querySelector('#avatarFaces');
+const avatarMale = document.querySelector('#avatarMale');
+const avatarFemale = document.querySelector('#avatarFemale');
 const avatarLamp = document.querySelector('.avatar-lamp');
 const expressionTxt = document.querySelector('#expression-txt');
 const expressionTitle = document.querySelector('#expression-title');
@@ -19,46 +21,58 @@ let fearful;
 let sad;
 
 let scan = 0;
-let maleAvatarImg = {
-  angry: './img/avatar/svg/angry_male.svg',
-  neutral: './img/avatar/svg/neutral_male.svg',
-  happy: './img/avatar/svg/happy_male.svg',
-  sad: './img/avatar/svg/sad_male.svg',
-  surprised: './img/avatar/svg/surprised_male.svg',
-  disgusted: './img/avatar/svg/disgusted_male.svg',
-  fearful: './img/avatar/svg/fearful_male.svg',
-};
-let femaleAvatarImg = {
-  angry: './img/avatar/svg/angry_female.svg',
-  neutral: './img/avatar/svg/neutral_female.svg',
-  happy: './img/avatar/svg/happy_female.svg',
-  sad: './img/avatar/svg/sad_female.svg',
-  surprised: './img/avatar/svg/surprised_female.svg',
-  disgusted: './img/avatar/svg/disgusted_female.svg',
-  fearful: './img/avatar/svg/fearful_female.svg',
-};
+// let avatarImg = {
+  // angry: './img/avatar/png/angry.png',
+  // neutral: './img/avatar/png/neutral.png',
+  // happy: './img/avatar/png/happy.png',
+  // sad: './img/avatar/png/sad.png',
+  // surprised: './img/avatar/png/surprised.png',
+  // disgusted: './img/avatar/png/disgusted.png',
+  // fearful: './img/avatar/png/fearful.png',
+// };
+// let femaleAvatarImg = {
+  // angry: './img/avatar/png/angry_female.png',
+  // neutral: './img/avatar/png/neutral_female.png',
+  // happy: './img/avatar/png/happy_female.png',
+  // sad: './img/avatar/png/sad_female.png',
+  // surprised: './img/avatar/png/surprised_female.png',
+  // disgusted: './img/avatar/png/disgusted_female.png',
+  // fearful: './img/avatar/png/fearful_female.png',
+// };
 
 // console.log([panel])
 expressionTitle.innerHTML="<h1>your are..</h1>";
-avatar.classList.add('avatar-blur');
+// avatarFemale.style.display="block";
+// avatarFemale.classList.add('avatar-blur');
 status.innerHTML = '<code class="label label-default">loading module...</code>';
-avatarLamp.style.backgroundColor = '#8A2BE2';
+avatarLamp.style.backgroundColor = '#ccc';
 
 let getAvatar = (mood, gender) => {
   if (mood[0] > 0.6 || mood[0] >= 1) {
-    if (gender === 'male') avatar.src = maleAvatarImg[mood[1]];
-    if (gender === 'female') avatar.src = femaleAvatarImg[mood[1]];
+    if (gender === 'male') {
+      avatarFaces.classList.remove('female');
+      avatarFaces.classList.add('male');
+      avatarFemale.style.display = "none";
+      avatarMale.style.display = "block";
+    } 
+    if (gender === 'female') {
+      avatarFaces.classList.remove('male');
+      avatarFaces.classList.add('female');
+      avatarMale.style.display = "none";
+      avatarFemale.style.display = "block";
+    }
+    avatarFaces.src = avatarImg[mood[1]];
     expressionTxt.innerText = mood[1];
   }
 };
 
-Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-  faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-  faceapi.nets.faceExpressionNet.loadFromUri('/models'),
-  faceapi.nets.ageGenderNet.loadFromUri('/models'),
-]).then(startVideo);
+// Promise.all([
+  // faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+  // faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+  // faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+  // faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+  // faceapi.nets.ageGenderNet.loadFromUri('/models'),
+// ]).then(startVideo);
 
 function startVideo() {
   navigator.getUserMedia(
@@ -103,10 +117,12 @@ video.addEventListener('play', () => {
 
         status.style.display = 'none';
         loader.style.display = 'none'; // hide preloader
-        avatar.style.filter = 'blur(0px)';
-        expressionTxt.innerText = 'You are...';
-        avatar.classList.remove('avatar-blur');
+        avatarFemale.style.filter = 'blur(0px)';
+        avatarMale.style.filter = 'blur(0px)';
+        avatarFemale.classList.remove('avatar-blur');
+        avatarMale.classList.remove('avatar-blur');
         avatarLamp.style.backgroundColor = 'lightgreen';
+        expressionTxt.innerText = 'You are...';
 
         scan++;
       }
