@@ -85,7 +85,7 @@ function startVideo() {
 function stopStreamedVideo(videoElem) {
   let stream = videoElem.srcObject;
   let tracks = stream.getTracks();
-  console.log(stream,tracks)
+  // console.log(stream,tracks)
   tracks.forEach(function(track) {
     track.stop();
   });
