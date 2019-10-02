@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sacramento');
 body {
   margin: 0;
   padding: 0;
@@ -17,6 +16,7 @@ canvas {
   position: absolute;
 }
 
+<<<<<<< HEAD
 .panel {
   border: none;
 }
@@ -32,13 +32,21 @@ canvas {
   opacity: 1;
   transform: translate(-50%, -0.2rem);
 }
+=======
+>>>>>>> avatar_detect_movements
 #wrapper {
+  width: 100%;
+  height: 100vh;
   display: flex;
+<<<<<<< HEAD
   background: aliceblue;
   border: 1px solid;
   border-radius: 10px;
+=======
+  justify-content: center;
+  align-items: center;
+>>>>>>> avatar_detect_movements
 }
-
 #expression-pending {
   font-size: 2em;
   text-align: center;
@@ -54,12 +62,111 @@ canvas {
   display: flex;
 }
 #statusBox {
+<<<<<<< HEAD
   position: relative;
   display: flex;
   justify-content: space-between;
 }
 #status {
   font-size: 1.3em;
+=======
+  background: #15aff4;
+  border-radius: 10px;
+  width: 100%;
+  height: 30px;
+}
+#imgBox {
+  height: 100%;
+}
+#loader {
+  position: absolute;
+  margin-left: 4px;
+  margin-top: 3px;
+}
+#status {
+  background: #11acf4;
+  font-size: 1.2em;
+  margin-left: 57px;
+  padding-top: 3px;
+}
+#statusCode {
+  position: absolute;
+  right: 0;
+  color: #fff;
+}
+#avatarMale,
+#avatarFemale {
+  display: none;
+}
+#avatarFaces.female {
+  position: absolute;
+  top: 125px;
+  left: 136px;
+}
+#avatarFaces.male {
+  position: absolute;
+  top: 116px;
+  left: 60px;
+}
+#panelBox {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+}
+
+#date {
+  width: 210px;
+  color: #03a9f4;
+  background: none;
+  border-radius: 10px;
+  transform: rotateZ(90deg);
+  position: absolute;
+  left: -123px;
+  top: 100px;
+}
+#stopStreaming {
+  display: none;
+  position: absolute;
+  right: -30px;
+  top: 10px;
+  color: #bbbbbb;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+code.label {
+  background: none;
+  border-radius: 0.1rem;
+  color: #ffffff;
+}
+
+.img-avatar,
+.img-avatar-start {
+  /* opacity: 0; */
+  display: none;
+  position: absolute;
+  left: 20px;
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.avatar-blur {
+  animation: image_blur 3s ease 0s infinite;
+  -webkit-animation: image_blur 3s ease 0s infinite;
+  -moz-animation: image_blur 3s ease 0s infinite;
+}
+
+.panel {
+  position: absolute;
+  box-sizing: border-box;
+  height: 35px;
+  width: 300px;
+  border-radius: 10px;
+  background: aliceblue;
+  border: none;
+  padding: 5px;
+  box-shadow: 1px 5px 20px -8px;
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+>>>>>>> avatar_detect_movements
 }
 .chip {
   font-size: 1.5em;
@@ -104,9 +211,13 @@ canvas {
   top: 5px;
   width: 20px;
   height: 20px;
-  background: #e8e8e8;
+  background: white;
   border-radius: 90px;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
 }
+
+/**** ANIMATIONS ****/
+
 @keyframes image_blur {
   0%,
   90% {

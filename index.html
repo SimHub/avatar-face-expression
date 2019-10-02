@@ -5,19 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>document</title>
-    <!-- <script defer src="face-api.min.js"></script> -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.css"
-    />
+<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://unpkg.com/spectre.css/dist/spectre.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css"
-    />
+    <!-- <link -->
+      <!-- rel="stylesheet" -->
+      <!-- href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" -->
+    <!-- /> -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"
@@ -31,23 +27,104 @@
       <video id="video" width="720" height="560" autoplay muted></video>
 
       <div class="panel">
+        <i id="stopStreaming" class="icon icon-cross"></i>
+        <code id="date"></code>
         <div id="statusBox">
-          <div>
+          <div id="loader">
             <span class="avatar-lamp"></span>
             <span class="loading"></span>
           </div>
-          <div id="status"></div>
+          <div id="status"><code id="statusCode"class="label"></code></div>
         </div>
-        <div class="panel-header text-center">
+        <div id="imgbox">
+          <!-- <div -->
+            <!-- class="img-avatar-start neutral-start" -->
+            <!-- alt="avatar" -->
+            <!-- ></div> -->
           <img
-            id="avatar"
-            src="./img/avatar/png/neutral_start.png"
+            class="img-avatar-start neutral-male avatar-blur "
+            src="./img/avatar/svg/neutral_male.svg"
             alt="avatar"
           />
-          <div class="panel-title h5 mt-10" id="expression-title"></div>
+          <img
+            class="img-avatar neutral-male"
+            src="./img/avatar/svg/neutral_male.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar neutral-female"
+            src="./img/avatar/svg/neutral_female.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar angry-male"
+            src="./img/avatar/svg/angry_male.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar angry-female"
+            src="./img/avatar/svg/angry_female.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar disgusted-male"
+            src="./img/avatar/svg/disgusted_male.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar disgusted-female"
+            src="./img/avatar/svg/disgusted_female.svg"
+            alt="avatar"
+          />
+          <img
+<<<<<<< HEAD
+            id="avatar"
+            src="./img/avatar/png/neutral_start.png"
+=======
+            class="img-avatar fearful-male"
+            src="./img/avatar/svg/fearful_male.svg"
+>>>>>>> avatar_detect_movements
+            alt="avatar"
+          />
+          <img
+            class="img-avatar fearful-female"
+            src="./img/avatar/svg/fearful_female.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar happy-male"
+            src="./img/avatar/svg/happy_male.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar happy-female"
+            src="./img/avatar/svg/happy_female.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar sad-male"
+            src="./img/avatar/svg/sad_male.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar sad-female"
+            src="./img/avatar/svg/sad_female.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar surprised-male"
+            src="./img/avatar/svg/surprised_male.svg"
+            alt="avatar"
+          />
+          <img
+            class="img-avatar surprised-female"
+            src="./img/avatar/svg/surprised_female.svg"
+            alt="avatar"
+          />
+        </div>
+        <div id="panelBox">
           <div class="panel-subtitle" id="expression-txt"></div>
         </div>
-
       </div>
     </div>
   </body>
