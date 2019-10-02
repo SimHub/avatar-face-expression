@@ -1,4 +1,5 @@
 ### Vim ###
+.DS_Store
 .git/
 .cache/
 # Swap
