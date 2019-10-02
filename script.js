@@ -93,7 +93,7 @@ function stopStreamedVideo(videoElem) {
 }
 video.addEventListener('play', () => {
   //status.innerHTML = '<code class="label">initialize  detection..</code>';
-  statusCode.innerHTML = 'initialize  detection..';
+  statusCode.innerHTML = 'initialize detection..';
   // avatarLamp.style.backgroundColor = 'orange';
   panel.style.height = '400px';
   avatarImgStart.style.display = 'block';
@@ -108,7 +108,8 @@ video.addEventListener('play', () => {
     if (detections[0]) {
       gender = detections[0].gender;
       // status.innerHTML= "";
-      //statusCode.style.dislay= "none";
+      status.style.visibility= "hidden";
+      status.style.dislay= "none";
       statusCode.innerHTML= "";
       loader.style.display = "none"; // hide preloader
       avatarImgStart.style.display = "none";
