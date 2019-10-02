@@ -5,25 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>document</title>
-    <!-- <script defer src="face-api.min.js"></script> -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.css"
-    />
+<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://unpkg.com/spectre.css/dist/spectre.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css"
-    />
+    <!-- <link -->
+      <!-- rel="stylesheet" -->
+      <!-- href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css" -->
+    <!-- /> -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"
     />
     <link rel="stylesheet" href="main.css" />
-    <script defer src="face-api.js"></script>
+    <script defer src="face-api.min.js"></script>
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -31,17 +27,23 @@
       <video id="video" width="720" height="560" autoplay muted></video>
 
       <div class="panel">
+        <i id="stopStreaming" class="icon icon-cross"></i>
+        <code id="date"></code>
         <div id="statusBox">
-          <div>
+          <div id="loader">
             <span class="avatar-lamp"></span>
             <span class="loading"></span>
           </div>
-          <div id="status"></div>
+          <div id="status"><code id="statusCode"class="label"></code></div>
         </div>
         <div id="imgbox">
+          <!-- <div -->
+            <!-- class="img-avatar-start neutral-start" -->
+            <!-- alt="avatar" -->
+            <!-- ></div> -->
           <img
-            class="img-avatar-start male neutral-start avatar-blur"
-            src="./img/avatar/svg/neutral_start.svg"
+            class="img-avatar-start neutral-male avatar-blur "
+            src="./img/avatar/svg/neutral_male.svg"
             alt="avatar"
           />
           <img
@@ -116,7 +118,6 @@
           />
         </div>
         <div id="panelBox">
-          <div class="panel-title h5 mt-10" id="expression-title"></div>
           <div class="panel-subtitle" id="expression-txt"></div>
         </div>
       </div>
