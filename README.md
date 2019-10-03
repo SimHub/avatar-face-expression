@@ -4,9 +4,16 @@ express your feeling through avatars using [face-api.js](https://github.com/just
 
 ### Demo  
 
-![codepen](./img/info/codepen.png=100x)[codepen](https://codepen.io/simhub/pen/RwbXzrj?editors=1000)
+<a href="https://codepen.io/simhub/pen/RwbXzrj?editors=1000">
+<img src="./img/info/codepen.png" alt="codepen" width="25">
+codepen
+</a>  
 
-![github.io](./img/info/github.png=100x)[github.io](https://simhub.github.io/avatar-face-expression/)
+
+<a href="https://codepen.io/simhub/pen/RwbXzrj?editors=1000">
+<img src="https://simhub.github.io/avatar-face-expression/" alt="github.io" width="25">
+github.io
+</a>  
 
 --------------    
 
