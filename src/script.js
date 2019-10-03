@@ -89,7 +89,7 @@ video.addEventListener('play', () => {
   setTimeout(() => {
     statusCode.innerHTML = 'just a moment please..';
     avatarImgStart.style.display = 'block';
-    expressionTxt.innerText = 'i am still focusing 🧐';
+    expressionTxt.innerHTML = 'i am still focusing <span class="avatar-blur">🧐</span>';
   }, 800);
 
   setInterval(async () => {
