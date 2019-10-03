@@ -6,12 +6,12 @@ express your feeling through avatars using
 ### Demo  
 
 
- <a href="https://codepen.io/simhub/pen/RwbXzrj?editors=1000" style="border:1px solid;padding:6px"><img
- src="./img/info/codepen.png" alt="codepen" width="25"> - codepen</a>  
+ <button href="https://codepen.io/simhub/pen/RwbXzrj?editors=1000"><img
+ src="./img/info/codepen.png" alt="codepen" width="25"> - codepen</button>  
 
 
- <a href="https://simhub.github.io/avatar-face-expression/" style="border:1px solid;padding:6px"><img
-src="./img/info/octocat.png" alt="githubio" width="25"> - github.io </a>
+ <button href="https://simhub.github.io/avatar-face-expression/"><img
+ src="./img/info/octocat.png" alt="githubio" width="25"> - github.io <button/>
 
 
 --------------    
