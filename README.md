@@ -9,10 +9,17 @@
 ![github
 stars](https://img.shields.io/github/stars/SimHub/avatar-face-expression?style=for-the-badge)
 ![github
-license](https://img.shields.io/github/license/SimHub/avatar-face-expression?style=for-the-badge)
+license](https://img.shields.io/github/license/SimHub/avatar-face-expression?style=for-the-badge)  
 
-express your feeling through avatars using
-[face-api.js](https://github.com/justadudewhohacks/face-api.js?files=1) + [avataaars](https://avataaars.com) 
+
+Express your feelings through avatars using
+[face-api.js](https://github.com/justadudewhohacks/face-api.js?files=1)+
+[avataaars](https://avataaars.com)   
+
+It's like Animoji in the Browser with face-api.js and  Avataaars express your  
+
+<small><i>(inspired by <a
+href="https://pragli.com/blog/live-avatars-with-faceapi-js/">pragli</a></i>)</small>
 
 ## Demo   
 
