@@ -11,7 +11,7 @@ codepen
 
 
 <a href="https://simhub.github.io/avatar-face-expression/">
-<img src="./img/info/octacat.png" alt="github.io" width="25">
+<img src="./img/info/octacat.png" alt="githubio" width="25">
 github.io
 </a>  
 
