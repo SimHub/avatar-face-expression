@@ -21,5 +21,5 @@ src="./img/info/octocat.png" alt="githubio" width="25"> - github.io </a>
 
 --------------
 
-![chrome](./img/info/chrome.png) ![firefox](./img/info/firefox.png)
+![chrome](./img/info/chrome.png =100x) ![firefox](./img/info/firefox.png)
 
