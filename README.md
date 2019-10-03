@@ -1,3 +1,14 @@
+ ![github
+ code-size](https://img.shields.io/github/languages/code-size/SimHub/avatar-face-expression?style=for-the-badge)
+ ![GitHub
+ forks](https://img.shields.io/github/forks/simhub/avatar-face-expression?style=for-the-badge)
+ ![github
+ goto-counter](https://img.shields.io/github/search/SimHub/avatar-face-expression/goto?style=for-the-badge)
+![github
+stars](https://img.shields.io/github/stars/SimHub/avatar-face-expression?style=for-the-badge)
+![github
+license](https://img.shields.io/github/license/SimHub/avatar-face-expression?style=for-the-badge)
+
 # Avatar-face-expression  
 
 express your feeling through avatars using
