@@ -19,7 +19,6 @@ src="./img/info/octocat.png" alt="githubio" width="25"> - github.io </a>
 ![avatar smile](./img/info/smile.png) 
 ![avatar neutral](./img/info/neutral.png)   
 
---------------
 
 <img src="./img/info/chrome.png" width="50" alt="chrome"> <img src="./img/info/firefox.png" width="50" alt="firefox"> 
 
