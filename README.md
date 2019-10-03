@@ -1,3 +1,5 @@
+# Avatar-face-expression  
+
  ![github
  code-size](https://img.shields.io/github/languages/code-size/SimHub/avatar-face-expression?style=for-the-badge)
  ![GitHub
@@ -8,8 +10,6 @@
 stars](https://img.shields.io/github/stars/SimHub/avatar-face-expression?style=for-the-badge)
 ![github
 license](https://img.shields.io/github/license/SimHub/avatar-face-expression?style=for-the-badge)
-
-# Avatar-face-expression  
 
 express your feeling through avatars using
 [face-api.js](https://github.com/justadudewhohacks/face-api.js?files=1) + [avataaars](https://avataaars.com) 
