@@ -3,7 +3,6 @@
 express your feeling through avatars using
 [face-api.js](https://github.com/justadudewhohacks/face-api.js?files=1) + [avataaars](https://avataaars.com) 
 
-----------  
 ## Demo   
 
  <a href="https://codepen.io/simhub/pen/RwbXzrj?editors=1000"><img
@@ -12,12 +11,6 @@ express your feeling through avatars using
  <a href="https://simhub.github.io/avatar-face-expression/"><img
  src="./img/info/octocat.png" alt="githubio" width="30"> GITHUB.IO<a/>  
  
-
-
-
-
---------------  
-
 
 
 ![avatar smile](./img/info/smile.png) 
