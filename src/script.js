@@ -72,6 +72,7 @@ function startVideo() {
       console.error(err);
     });
   statusCode.innerHTML = 'start video session...';
+  video.play();
 }
 function stopStreamedVideo(videoElem) {
   let stream = videoElem.srcObject;
@@ -83,10 +84,13 @@ function stopStreamedVideo(videoElem) {
   videoElem.srcObject = null;
 }
 video.addEventListener('play', () => {
-  statusCode.innerHTML = 'initialize detection..';
   panel.style.height = '400px';
-  avatarImgStart.style.display = 'block';
-  expressionTxt.innerText = '...';
+  expressionTxt.style.fontSize = '2.2em';
+  setTimeout(() => {
+    statusCode.innerHTML = 'just a moment please..';
+    avatarImgStart.style.display = 'block';
+    expressionTxt.innerText = 'i am still focusing 🧐';
+  }, 800);
 
   setInterval(async () => {
     const detections = await faceapi
