@@ -11,24 +11,21 @@ const status = document.querySelector('#status');
 const statusCode = document.querySelector('#statusCode');
 const panel = document.querySelector('.panel');
 const dateTime = document.querySelector('#date');
-let gender="";
-let age="";
-let exp="";
-let angry="";
-let neutral="";
-let happy="";
-let surprised="";
-let disgusted="";
-let fearful="";
-let sad="";
+let gender = '';
+let age = '';
+let exp = '';
+let angry = '';
+let neutral = '';
+let happy = '';
+let surprised = '';
+let disgusted = '';
+let fearful = '';
+let sad = '';
 let d = new Date();
 let nD = d.toString();
 let sD = nD.split(' ').splice(0, 5);
 
-// console.log([stopStreaming]);
-
 dateTime.innerText = `${sD[0]} ${sD[1]} ${sD[2]} ${sD[3]} ${sD[4]}`;
-// status.innerHTML = '<code class="label">loading module...</code>';
 statusCode.innerHTML = 'loading module...';
 
 let getAvatar = (mood, gender) => {
@@ -36,10 +33,8 @@ let getAvatar = (mood, gender) => {
     if (gender === 'male') {
       avatarImgs.forEach(i => {
         if (i.classList[1] === `${mood[1]}-male`) {
-          // i.style.opacity = 1;
           i.style.display = 'block';
         } else {
-          // i.style.opacity = 0;
           i.style.display = 'none';
         }
       });
@@ -47,10 +42,8 @@ let getAvatar = (mood, gender) => {
     if (gender === 'female') {
       avatarImgs.forEach(i => {
         if (i.classList[1] === `${mood[1]}-female`) {
-          // i.style.opacity = 1;
           i.style.display = 'block';
         } else {
-          // i.style.opacity = 0;
           i.style.display = 'none';
         }
       });
@@ -59,13 +52,13 @@ let getAvatar = (mood, gender) => {
   }
 };
 
-  Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('/models'),
-    faceapi.nets.ageGenderNet.loadFromUri('/models'),
-  ]).then(startVideo);
+Promise.all([
+  faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+  faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+  faceapi.nets.ageGenderNet.loadFromUri('/models'),
+]).then(startVideo);
 
 function startVideo() {
   navigator.mediaDevices
@@ -78,8 +71,6 @@ function startVideo() {
       /* handle the error */
       console.error(err);
     });
-  // console.log('start video session...');
-  // status.innerHTML = '<code class="label">start video session...</code>';
   statusCode.innerHTML = 'start video session...';
 }
 function stopStreamedVideo(videoElem) {
@@ -92,9 +83,7 @@ function stopStreamedVideo(videoElem) {
   videoElem.srcObject = null;
 }
 video.addEventListener('play', () => {
-  //status.innerHTML = '<code class="label">initialize  detection..</code>';
   statusCode.innerHTML = 'initialize detection..';
-  // avatarLamp.style.backgroundColor = 'orange';
   panel.style.height = '400px';
   avatarImgStart.style.display = 'block';
   expressionTxt.innerText = '...';
@@ -108,11 +97,11 @@ video.addEventListener('play', () => {
     if (detections[0]) {
       gender = detections[0].gender;
       // status.innerHTML= "";
-      status.style.visibility= "hidden";
-      status.style.dislay= "none";
-      statusCode.innerHTML= "";
-      loader.style.display = "none"; // hide preloader
-      avatarImgStart.style.display = "none";
+      status.style.visibility = 'hidden';
+      status.style.dislay = 'none';
+      statusCode.innerHTML = '';
+      loader.style.display = 'none'; // hide preloader
+      avatarImgStart.style.display = 'none';
       avatarLamp.style.backgroundColor = 'lightgreen';
       exp = detections[0].expressions;
       angry = [exp.angry.toFixed(2), 'angry'];
@@ -130,7 +119,7 @@ video.addEventListener('play', () => {
       getAvatar(disgusted, gender);
       getAvatar(sad, gender);
     }
-  }, 500);
+  }, 800);
 
   stopStreaming.style.display = 'block';
 
