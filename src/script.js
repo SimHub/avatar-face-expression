@@ -84,13 +84,13 @@ function stopStreamedVideo(videoElem) {
   videoElem.srcObject = null;
 }
 video.addEventListener('play', () => {
-  panel.style.height = '400px';
-  expressionTxt.style.fontSize = '2.2em';
-  setTimeout(() => {
+
+ panel.style.height = '400px';
+  setTimeout(()=>{
     statusCode.innerHTML = 'just a moment please..';
     avatarImgStart.style.display = 'block';
-    expressionTxt.innerHTML = 'i am still focusing <span class="avatar-blur">🧐</span>';
-  }, 800);
+    expressionTxt.innerText = '..still focusing 🧐'
+  },800);
 
   setInterval(async () => {
     const detections = await faceapi
