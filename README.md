@@ -1,10 +1,10 @@
 # Avatar-face-expression  
 
 express your feeling through avatars using
-[face-api.js](https://github.com/justadudewhohacks/face-api.js?files=1) + [avataaars](https://avataaars.com)
+[face-api.js](https://github.com/justadudewhohacks/face-api.js?files=1) + [avataaars](https://avataaars.com) 
 
-### Demo  
-
+----------  
+## Demo   
 
  <a href="https://codepen.io/simhub/pen/RwbXzrj?editors=1000"><img
  src="./img/info/codepen.png" alt="codepen" width="30"> CODEPEN</a>  
