@@ -10,8 +10,8 @@ codepen
 </a>  
 
 
-<a href="https://codepen.io/simhub/pen/RwbXzrj?editors=1000">
-<img src="https://simhub.github.io/avatar-face-expression/" alt="github.io" width="25">
+<a href="https://simhub.github.io/avatar-face-expression/">
+<img src="./img/info/github.png" alt="github.io" width="25">
 github.io
 </a>  
 
