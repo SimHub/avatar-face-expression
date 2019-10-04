@@ -37,11 +37,6 @@ canvas {
   margin-top: 55px;
   display: flex;
 }
-#statusBox {
-  background: #11acf4;
-  border-radius: 10px;
-  height: 30px;
-}
 #imgBox {
   height: 100%;
 }
@@ -51,14 +46,29 @@ canvas {
   margin-left: 4px;
   margin-top: 3px;
 }
+#statusBox {
+  background-image: linear-gradient(
+    108.7deg,
+    rgba(34, 219, 231, 1) -0.9%,
+    rgba(52, 118, 246, 1) 88.7%
+  );
+  width: 0;
+  border-radius: 10px;
+  height: 30px;
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
 #status {
   background: #11acf4;
-  font-size: 1.2em;
-  margin-left: 57px;
+  width: 100%;
+  text-align: -webkit-right;
+  text-align: right;
+  /* font-size: 1.2em; */
+  /* margin-left: 57px; */
 }
 #statusCode {
   position: absolute;
-  right: 0;
+  left: 50px;
+  top: 7px;
   color: #fff;
 }
 #avatarMale,
@@ -177,10 +187,18 @@ code.label {
   height: 20px;
   background: white;
   border-radius: 90px;
-  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  filter: blur(1px);
 }
 
 /**** ANIMATIONS ****/
+
+.progress-animation {
+  animation-name: colorchanger;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
 
 @keyframes image_blur {
   0%,
@@ -195,5 +213,29 @@ code.label {
     -moz-filter: blur(15px);
     -o-filter: blur(15px);
     -ms-filter: blur(15px);
+  }
+}
+
+@keyframes colorchanger {
+  0% {
+    background-image: linear-gradient(
+      72.5deg,
+      rgba(0, 175, 255, 1) 27.9%,
+      rgba(0, 224, 254, 1) 84.2%
+    );
+  }
+  50% {
+    background-image: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(220, 217, 249, 1) 0%,
+      rgba(172, 224, 217, 1) 89.8%
+    );
+  }
+  100% {
+    background-image: linear-gradient(
+      108.7deg,
+      rgba(34, 219, 231, 1) -0.9%,
+      rgba(52, 118, 246, 1) 88.7%
+    );
   }
 }
