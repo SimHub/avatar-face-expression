@@ -80,7 +80,6 @@ function startVideo() {
 function stopStreamedVideo(videoElem) {
   let stream = videoElem.srcObject;
   let tracks = stream.getTracks();
-  // console.log(stream,tracks)
   tracks.forEach(function(track) {
     track.stop();
   });
@@ -103,7 +102,6 @@ video.addEventListener('play', () => {
       .withAgeAndGender();
     if (detections[0]) {
       panel.style.backgroundColor = 'aliceblue';
-      console.log('detection');
       gender = detections[0].gender;
       // status.innerHTML= "";
       // status.style.visibility = 'hidden';
@@ -131,7 +129,6 @@ video.addEventListener('play', () => {
       getAvatar(disgusted, gender);
       getAvatar(sad, gender);
     } else {
-      console.log('NOOP');
       avatarLamp.style.backgroundColor = '#ccc';
       panel.style.backgroundColor = '#d3d3d345';
       statusCode.innerHTML = "can't see you!..";
@@ -143,7 +140,6 @@ video.addEventListener('play', () => {
   stopStreaming.addEventListener('click', e => {
     let el = e.target;
     let elClass = e.target.classList[1];
-    // console.log(elClass);
     if (elClass === 'icon-cross') {
       el.classList.remove('icon-cross');
       el.classList.add('icon-refresh');
