@@ -9,6 +9,7 @@ const expressionTitle = document.querySelector('#expression-title');
 const loader = document.querySelector('.loading');
 const status = document.querySelector('#status');
 const statusCode = document.querySelector('#statusCode');
+const statusBox = document.querySelector('#statusBox');
 const panel = document.querySelector('.panel');
 const dateTime = document.querySelector('#date');
 let gender = '';
@@ -27,6 +28,7 @@ let sD = nD.split(' ').splice(0, 5);
 
 dateTime.innerText = `${sD[0]} ${sD[1]} ${sD[2]} ${sD[3]} ${sD[4]}`;
 statusCode.innerHTML = 'loading module...';
+statusBox.classList.add('progress-animation');
 
 let getAvatar = (mood, gender) => {
   if (mood[0] > 0.6 || mood[0] >= 1) {
@@ -72,6 +74,7 @@ function startVideo() {
       console.error(err);
     });
   statusCode.innerHTML = 'start video session...';
+  statusBox.style.width = '34%';
   video.play();
 }
 function stopStreamedVideo(videoElem) {
@@ -86,9 +89,10 @@ function stopStreamedVideo(videoElem) {
 video.addEventListener('play', () => {
   panel.style.height = '400px';
   setTimeout(() => {
-    statusCode.innerHTML = 'just a moment please..';
+    statusCode.innerHTML= 'just a moment please..';
     avatarImgStart.style.display = 'block';
     expressionTxt.innerText = '..still focusing 🧐';
+    statusBox.style.width = '80%';
   }, 800);
 
   setInterval(async () => {
@@ -98,11 +102,16 @@ video.addEventListener('play', () => {
       .withFaceExpressions()
       .withAgeAndGender();
     if (detections[0]) {
+      panel.style.backgroundColor = 'aliceblue';
+      console.log('detection');
       gender = detections[0].gender;
       // status.innerHTML= "";
-      status.style.visibility = 'hidden';
-      status.style.dislay = 'none';
-      statusCode.innerHTML = '';
+      // status.style.visibility = 'hidden';
+      // status.style.dislay = 'none';
+      // statusBox.style.visibility = 'hidden';
+      statusBox.style.width = '100%';
+      statusBox.classList.remove('progress-animation');
+      statusCode.innerHTML = 'ready!';
       loader.style.display = 'none'; // hide preloader
       avatarImgStart.style.display = 'none';
       avatarLamp.style.backgroundColor = 'lightgreen';
@@ -121,6 +130,11 @@ video.addEventListener('play', () => {
       getAvatar(surprised, gender);
       getAvatar(disgusted, gender);
       getAvatar(sad, gender);
+    } else {
+      console.log('NOOP');
+      avatarLamp.style.backgroundColor = '#ccc';
+      panel.style.backgroundColor = '#d3d3d345';
+      statusCode.innerHTML = "can't see you!..";
     }
   }, 800);
 
