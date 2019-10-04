@@ -61,6 +61,7 @@ canvas {
   background: #11acf4;
   width: 100%;
   text-align: -webkit-right;
+  text-align: right;
   /* font-size: 1.2em; */
   /* margin-left: 57px; */
 }
