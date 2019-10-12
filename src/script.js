@@ -12,6 +12,9 @@ const statusCode = document.querySelector('#statusCode');
 const statusBox = document.querySelector('#statusBox');
 const panel = document.querySelector('.panel');
 const dateTime = document.querySelector('#date');
+
+const models = 'https://simhub.github.io/avatar-face-expression/models';
+
 let gender = '';
 let age = '';
 let exp = '';
@@ -55,11 +58,11 @@ let getAvatar = (mood, gender) => {
 };
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-  faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-  faceapi.nets.faceExpressionNet.loadFromUri('/models'),
-  faceapi.nets.ageGenderNet.loadFromUri('/models'),
+  faceapi.nets.tinyFaceDetector.loadFromUri(models),
+  faceapi.nets.faceLandmark68Net.loadFromUri(models),
+  faceapi.nets.faceRecognitionNet.loadFromUri(models),
+  faceapi.nets.faceExpressionNet.loadFromUri(models),
+  faceapi.nets.ageGenderNet.loadFromUri(models),
 ]).then(startVideo);
 
 function startVideo() {
@@ -88,7 +91,7 @@ function stopStreamedVideo(videoElem) {
 video.addEventListener('play', () => {
   panel.style.height = '400px';
   setTimeout(() => {
-    statusCode.innerHTML= 'just a moment please..';
+    statusCode.innerHTML = 'just a moment please..';
     avatarImgStart.style.display = 'block';
     expressionTxt.innerText = '..still focusing 🧐';
     statusBox.style.width = '80%';
