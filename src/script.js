@@ -15,6 +15,11 @@ const dateTime = document.querySelector('#date');
 
 const models = 'https://simhub.github.io/avatar-face-expression/models';
 
+//>>>
+let ua = navigator.userAgent.toLowerCase();
+let is_safari = ua.indexOf('safari/') > -1 && ua.indexOf('chrome') < 0;
+//>>>
+
 let gender = '';
 let age = '';
 let exp = '';
@@ -66,6 +71,11 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
+  //>>>
+  video.setAttribute('autoplay', '');
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  //>>>
   navigator.mediaDevices
     .getUserMedia({video: {facingMode: 'user'}})
     .then(function(stream) {
@@ -78,7 +88,14 @@ function startVideo() {
     });
   statusCode.innerHTML = 'start video session...';
   statusBox.style.width = '34%';
-  video.play();
+  //>>>
+  console.log(is_safari);
+  if (is_safari) {
+    setTimeout(function() {
+      video.play();
+    }, 50);
+  }
+  //>>>
 }
 function stopStreamedVideo(videoElem) {
   let stream = videoElem.srcObject;
