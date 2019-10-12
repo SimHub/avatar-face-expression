@@ -12,6 +12,8 @@ const statusCode = document.querySelector('#statusCode');
 const statusBox = document.querySelector('#statusBox');
 const panel = document.querySelector('.panel');
 const dateTime = document.querySelector('#date');
+let ua = navigator.userAgent.toLowerCase();
+let is_safari = ua.indexOf('safari/') > -1 && ua.indexOf('chrome') < 0;
 let gender = '';
 let age = '';
 let exp = '';
@@ -63,6 +65,9 @@ Promise.all([
 ]).then(startVideo);
 
 function startVideo() {
+  video.setAttribute('autoplay', '');
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
   navigator.mediaDevices
     .getUserMedia({video: {facingMode: 'user'}})
     .then(function(stream) {
@@ -75,7 +80,11 @@ function startVideo() {
     });
   statusCode.innerHTML = 'start video session...';
   statusBox.style.width = '34%';
-  video.play();
+  if (is_safari) {
+    setTimeout(function() {
+      video.play();
+    }, 50);
+  }
 }
 function stopStreamedVideo(videoElem) {
   let stream = videoElem.srcObject;
@@ -88,7 +97,7 @@ function stopStreamedVideo(videoElem) {
 video.addEventListener('play', () => {
   panel.style.height = '400px';
   setTimeout(() => {
-    statusCode.innerHTML= 'just a moment please..';
+    statusCode.innerHTML = 'just a moment please..';
     avatarImgStart.style.display = 'block';
     expressionTxt.innerText = '..still focusing 🧐';
     statusBox.style.width = '80%';
