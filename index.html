@@ -4,118 +4,340 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>avatar-face-expression</title>
+    <title>Avatar Face Expression — Live AI Mood Mirror</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Sacramento&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/spectre.css/dist/spectre.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css"
     />
     <link rel="stylesheet" href="src/main.css" />
     <script defer src="face-api.min.js"></script>
     <script defer src="src/script.js"></script>
   </head>
-  <body>
-    <div id="wrapper">
-      <video id="video" width="720" height="560"></video>
-
-      <div class="panel">
-        <i id="stopStreaming" class="icon icon-cross"></i>
-        <code id="date"></code>
-        <div id="statusBox">
-          <div id="loader">
-            <span class="avatar-lamp"></span>
-            <span class="loading"></span>
+  <body data-mood="neutral">
+    <main class="app-shell">
+      <section class="app-card" aria-label="Avatar Face Expression">
+        <!-- Header Bar -->
+        <header class="card-header">
+          <div class="status-pill" id="statusPill" data-state="idle">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="statusText">Ready to start</span>
           </div>
-          <div id="status"><code id="statusCode" class="label"></code></div>
+
+          <div class="header-actions">
+            <button
+              type="button"
+              class="icon-btn"
+              id="themeToggleBtn"
+              title="Toggle Dark Mode"
+              aria-label="Toggle Dark Mode"
+              aria-pressed="false"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="icon-btn"
+              id="photoboothBtn"
+              title="2x2 Mood Photobooth"
+              aria-label="Start 2x2 Mood Photobooth"
+              aria-pressed="false"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="7" height="7" x="3" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="14" rx="1" />
+                <rect width="7" height="7" x="3" y="14" rx="1" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="icon-btn"
+              id="toggleChallengeBtn"
+              title="Emotion Challenge"
+              aria-label="Toggle Emotion Challenge"
+              aria-pressed="false"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="icon-btn"
+              id="togglePreviewBtn"
+              title="Toggle Webcam Preview"
+              aria-label="Toggle Webcam Preview"
+              aria-pressed="false"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m22 8-6 4 6 4V8Z" />
+                <rect width="14" height="12" x="2" y="6" rx="2" ry="2" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="icon-btn"
+              id="snapshotBtn"
+              title="Download Avatar Snapshot"
+              aria-label="Download Avatar Snapshot"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" x2="12" y1="15" y2="3" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="icon-btn"
+              id="cameraToggleBtn"
+              title="Stop Camera"
+              aria-label="Stop Camera"
+              hidden
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="12" height="12" x="6" y="6" rx="2" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Progress Bar (shown during model loading) -->
+        <div class="progress-track" id="progressTrack" hidden>
+          <div class="progress-fill" id="progressFill"></div>
         </div>
-        <div id="imgbox">
-          <img
-            class="img-avatar-start neutral-male avatar-blur"
-            src="./img/avatar/svg/neutral_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar neutral-male"
-            src="./img/avatar/svg/neutral_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar neutral-female"
-            src="./img/avatar/svg/neutral_female.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar angry-male"
-            src="./img/avatar/svg/angry_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar angry-female"
-            src="./img/avatar/svg/angry_female.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar disgusted-male"
-            src="./img/avatar/svg/disgusted_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar disgusted-female"
-            src="./img/avatar/svg/disgusted_female.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar fearful-male"
-            src="./img/avatar/svg/fearful_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar fearful-female"
-            src="./img/avatar/svg/fearful_female.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar happy-male"
-            src="./img/avatar/svg/happy_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar happy-female"
-            src="./img/avatar/svg/happy_female.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar sad-male"
-            src="./img/avatar/svg/sad_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar sad-female"
-            src="./img/avatar/svg/sad_female.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar surprised-male"
-            src="./img/avatar/svg/surprised_male.svg"
-            alt="avatar"
-          />
-          <img
-            class="img-avatar surprised-female"
-            src="./img/avatar/svg/surprised_female.svg"
-            alt="avatar"
-          />
+
+        <!-- Start / Onboarding Screen -->
+        <div class="start-screen" id="startScreen">
+          <div class="avatar-ring start-ring">
+            <img
+              id="startAvatarImg"
+              src="./img/avatar/svg/neutral_start.svg"
+              alt="Neutral Avatar Preview"
+            />
+          </div>
+          <h1 class="app-title">Avatar Mood Mirror</h1>
+          <p class="app-subtitle">
+            Real-time facial expression detection turned into live SVG avatars.
+          </p>
+          <button type="button" class="primary-btn" id="startBtn">
+            Start Camera
+          </button>
+          <p class="privacy-note">
+            <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            100% local in your browser — no video leaves your device.
+          </p>
         </div>
-        <div id="panelBox">
-          <div class="panel-subtitle" id="expression-txt"></div>
+
+        <!-- Error Banner -->
+        <div class="error-banner" id="errorBanner" role="alert" hidden>
+          <p id="errorMessage"></p>
+          <button type="button" class="secondary-btn" id="retryBtn">
+            Try Again
+          </button>
         </div>
-      </div>
-    </div>
+
+        <!-- Live Stage (hidden until camera starts) -->
+        <div class="live-stage" id="liveStage" hidden>
+          <!-- Challenge Banner -->
+          <div class="challenge-bar" id="challengeBar" hidden>
+            <span class="challenge-prompt" id="challengePrompt">
+              Show: <strong>Surprised</strong>
+            </span>
+            <div class="challenge-meta">
+              <span class="challenge-timer" id="challengeTimer">20s</span>
+              <span class="challenge-score">
+                Score: <strong id="challengeScore">0</strong>
+              </span>
+              <span class="challenge-best">
+                Best: <strong id="challengeBest">0</strong>
+              </span>
+            </div>
+          </div>
+
+          <!-- Photobooth Countdown Banner -->
+          <div class="photobooth-bar" id="photoboothBar" hidden>
+            <span id="photoboothPrompt">Pose 1/4: <strong>Happy</strong></span>
+            <span class="challenge-timer" id="photoboothCountdown">3</span>
+          </div>
+
+          <!-- Photobooth Result Preview -->
+          <div class="photobooth-result" id="photoboothResult" hidden>
+            <img id="photoboothPreviewImg" alt="2x2 Mood Collage" />
+            <div class="photobooth-actions">
+              <button type="button" class="primary-btn" id="downloadCollageBtn">
+                Download 2x2 Collage
+              </button>
+              <button type="button" class="secondary-btn" id="closeCollageBtn">
+                Close
+              </button>
+            </div>
+          </div>
+
+          <!-- Avatar Display -->
+          <div class="avatar-stage">
+            <div class="avatar-ring" id="avatarRing">
+              <div class="avatar-tilt-wrap" id="avatarTiltWrap">
+                <img
+                  id="activeAvatarImg"
+                  class="avatar-img"
+                  src="./img/avatar/svg/neutral_male.svg"
+                  alt="Live expression avatar"
+                />
+                <div
+                  id="customAvatarWrap"
+                  class="custom-avatar-wrap"
+                  hidden
+                ></div>
+              </div>
+            </div>
+
+            <div class="mood-readout">
+              <span class="mood-badge" id="moodBadge">Neutral</span>
+              <span class="meta-badge" id="metaBadge" hidden></span>
+            </div>
+          </div>
+
+          <!-- Primary Controls: Pack Switcher + Customize Toggle -->
+          <div class="controls-bar">
+            <div
+              class="segmented-control"
+              role="group"
+              aria-label="Avatar character pack"
+            >
+              <button
+                type="button"
+                class="seg-btn active"
+                data-pack-mode="classic"
+              >
+                Classic
+              </button>
+              <button type="button" class="seg-btn" data-pack-mode="robot">
+                Robo-Bot
+              </button>
+              <button type="button" class="seg-btn" data-pack-mode="blob">
+                Mood Blob
+              </button>
+            </div>
+
+            <button
+              type="button"
+              class="customize-toggle-btn"
+              id="customizeToggleBtn"
+              aria-expanded="false"
+              aria-controls="customizePanel"
+            >
+              <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4" x2="20" y1="21" y2="21" />
+                <line x1="4" x2="20" y1="14" y2="14" />
+                <line x1="4" x2="20" y1="7" y2="7" />
+                <circle cx="9" cy="7" r="2" />
+                <circle cx="15" cy="14" r="2" />
+                <circle cx="11" cy="21" r="2" />
+              </svg>
+              <span>Customize</span>
+            </button>
+          </div>
+
+          <!-- Collapsible Customize Drawer -->
+          <div class="customize-panel" id="customizePanel" hidden>
+            <div class="customize-row">
+              <div
+                class="segmented-control"
+                id="genderControl"
+                role="group"
+                aria-label="Avatar style"
+              >
+                <button
+                  type="button"
+                  class="seg-btn active"
+                  data-gender-mode="auto"
+                >
+                  Auto
+                </button>
+                <button type="button" class="seg-btn" data-gender-mode="male">
+                  Male
+                </button>
+                <button type="button" class="seg-btn" data-gender-mode="female">
+                  Female
+                </button>
+              </div>
+
+              <div
+                class="segmented-control"
+                role="group"
+                aria-label="Glasses accessory"
+              >
+                <button
+                  type="button"
+                  class="seg-btn active"
+                  data-accessory-mode="none"
+                >
+                  No Glasses
+                </button>
+                <button type="button" class="seg-btn" data-accessory-mode="glasses">
+                  Glasses
+                </button>
+                <button
+                  type="button"
+                  class="seg-btn"
+                  data-accessory-mode="sunglasses"
+                >
+                  Shades
+                </button>
+              </div>
+            </div>
+
+            <div class="customizer-row" id="customizerRow" aria-label="Avatar colors">
+              <div class="swatch-group" id="skinSwatchGroup">
+                <span class="swatch-label">Skin</span>
+                <div class="swatch-list" id="skinSwatches"></div>
+              </div>
+              <div class="swatch-group" id="hairSwatchGroup">
+                <span class="swatch-label">Hair</span>
+                <div class="swatch-list" id="hairSwatches"></div>
+              </div>
+              <div class="swatch-group">
+                <span class="swatch-label">Style</span>
+                <div class="swatch-list" id="outfitSwatches"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Confidence Bars -->
+          <div class="expressions-panel" aria-label="Expression confidence">
+            <div class="expressions-grid" id="expressionsGrid"></div>
+          </div>
+
+          <!-- Session Mood Breakdown -->
+          <div class="session-stats" id="sessionStats" hidden>
+            <div class="session-stats-header">
+              <span>Session Mood Mix</span>
+              <span id="sessionTopMood"></span>
+            </div>
+            <div class="session-bar" id="sessionBar"></div>
+          </div>
+        </div>
+
+        <!-- Optional Webcam Preview (PiP) -->
+        <div class="webcam-pip" id="webcamPip" hidden>
+          <video id="video" autoplay muted playsinline></video>
+          <canvas id="overlayCanvas"></canvas>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
