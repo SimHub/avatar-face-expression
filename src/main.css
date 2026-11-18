@@ -801,6 +801,33 @@ body {
   flex: 1;
 }
 
+/* Footer GitHub Link */
+.card-footer {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--transition-fast), color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.github-link:hover {
+  opacity: 1;
+  color: var(--text-main);
+  background: var(--surface);
+}
+
 .exp-row.is-top .exp-label {
   color: var(--text-main);
   font-weight: 700;
