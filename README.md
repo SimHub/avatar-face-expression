@@ -1,5 +1,6 @@
 # Avatar Face Expression (v2)
 
+![GitHub tag](https://img.shields.io/github/v/tag/SimHub/avatar-face-expression?style=for-the-badge)
 ![github code-size](https://img.shields.io/github/languages/code-size/SimHub/avatar-face-expression?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/simhub/avatar-face-expression?style=for-the-badge)
 ![github stars](https://img.shields.io/github/stars/SimHub/avatar-face-expression?style=for-the-badge)
@@ -22,6 +23,18 @@ Express your feelings through live SVG avatars in your browser using [face-api.j
 - **Speed-Run Challenge:** 20-second emotion challenge with `localStorage` high score & Web Audio chime
 - **PNG Snapshot & Webcam PiP:** Download your current avatar or toggle a mirrored webcam preview with landmark overlay
 - **Light & Dark Mode:** Automatic system theme detection with manual toggle
+
+## Run Locally
+
+Webcam access (`getUserMedia`) requires `localhost` or `https`:
+
+```bash
+git clone https://github.com/SimHub/avatar-face-expression.git
+cd avatar-face-expression
+python3 -m http.server 8080
+```
+
+Open `http://localhost:8080` in your browser.
 
 ## Demo
 
